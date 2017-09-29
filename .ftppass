@@ -1,0 +1,10 @@
+{
+	"live": {
+		"username": "test@test.com",
+		"password": "secret"
+	},
+	"develop": {
+	    "username": "test@test.com",
+    	"password": "secret"
+	}
+}

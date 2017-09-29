@@ -1,0 +1,10 @@
+*~
+.DS_Store
+.icloud
+*.icloud
+.idea
+vendor
+.sass-cache
+node_modules
+public/css
+public/js

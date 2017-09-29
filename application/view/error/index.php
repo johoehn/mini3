@@ -1,3 +1,4 @@
 <div class="container">
-    <p>This is the Error-page. Will be shown when a page (= controller / method) does not exist.</p>
+    <h1>Error 404</h1>
+    <p>Page not found. </p>
 </div>
