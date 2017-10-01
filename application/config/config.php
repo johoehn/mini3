@@ -59,3 +59,12 @@ define('DB_NAME', 'mini');
 define('DB_USER', 'root');
 define('DB_PASS', '12345678');
 define('DB_CHARSET', 'utf8');
+
+/**
+ * Configuration for: Mail
+ * This is the place where you define your mail smtp server
+ */
+define('SMTP_USERNAME', 'john@doe.com');
+define('SMTP_PASSWORD', 'passphrase');
+define('SMTP_HOST', 'mail.doe.com');
+define('SMTP_PORT', 25);
