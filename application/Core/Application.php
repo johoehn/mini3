@@ -22,6 +22,11 @@ class Application
         // create array with URL parts in $url
         $this->splitUrl();
 
+        //redirect duplicate start page on /home/index
+        if($this->url_controller == "home" && $this->url_action == "index") {
+            header("Location: /");
+        }
+
         // check for controller: no controller given ? then load start-page
         if (!$this->url_controller) {
 
