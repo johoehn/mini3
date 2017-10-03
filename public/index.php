@@ -30,8 +30,15 @@ require ROOT . 'vendor/autoload.php';
 // load application config (error reporting etc.)
 require APP . 'config/config.php';
 
-// load application class
-use Mini\Core\Application;
+//start observer
+ob_start();
 
 // start the application
+use Mini\Core\Application;
 $app = new Application();
+
+//minify output
+$buffer = ob_get_contents();
+ob_end_clean();
+use Mini\Libs\Helper;
+echo Helper::minify_html_output($buffer);
