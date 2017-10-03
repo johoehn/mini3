@@ -4,54 +4,47 @@ namespace Mini\Libs;
 
 class Helper
 {
-    /**
-     * debugPDO
-     *
-     * Shows the emulated SQL query in a PDO statement. What it does is just extremely simple, but powerful:
-     * It combines the raw query and the placeholders. For sure not really perfect (as PDO is more complex than just
-     * combining raw query and arguments), but it does the job.
-     *
-     * @author Panique
-     * @param string $raw_sql
-     * @param array $parameters
-     * @return string
-     */
-    static public function debugPDO($raw_sql, $parameters) {
-
-        $keys = array();
-        $values = $parameters;
-
-        foreach ($parameters as $key => $value) {
-
-            // check if named parameters (':param') or anonymous parameters ('?') are used
-            if (is_string($key)) {
-                $keys[] = '/' . $key . '/';
-            } else {
-                $keys[] = '/[?]/';
-            }
-
-            // bring parameter into human-readable format
-            if (is_string($value)) {
-                $values[$key] = "'" . $value . "'";
-            } elseif (is_array($value)) {
-                $values[$key] = implode(',', $value);
-            } elseif (is_null($value)) {
-                $values[$key] = 'NULL';
-            }
-        }
-
-        /*
-        echo "<br> [DEBUG] Keys:<pre>";
-        print_r($keys);
-
-        echo "\n[DEBUG] Values: ";
-        print_r($values);
+    static public function p($obj)
+    {
+        echo "<pre>";
+        echo $obj;
         echo "</pre>";
-        */
-
-        $raw_sql = preg_replace($keys, $values, $raw_sql, 1, $count);
-
-        return $raw_sql;
     }
+    static public function startsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        return (substr($haystack, 0, $length) === $needle);
+    }
+    static public function endsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
 
+        return $length === 0 ||
+            (substr($haystack, -$length) === $needle);
+    }
+    static public function hide_email($email)
+    {
+        $output = "";
+        for ($i = 0; $i < strlen($email); $i++) { $output .= '&#'.ord($email[$i]).';'; }
+        return $output;
+    }
+    static public function curl($url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        $output = curl_exec($ch);
+        curl_close($ch);
+        return $output;
+    }
+    function remove_slashes_at_start_and_end($string) {
+        if($this->startsWith($string, "/")) {
+            $string = substr($string, 1);
+        }
+        if($this->endsWith($string, "/")) {
+            $string = substr($string, 0, -1);
+        }
+        return $string;
+    }
 }
