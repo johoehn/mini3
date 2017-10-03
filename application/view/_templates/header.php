@@ -13,7 +13,7 @@
     <!-- CSS -->
     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 </head>
-<body>
+<body class="<?php echo $this->data->body_class; ?>">
     <!-- logo, check the CSS file for more info how the logo "image" is shown -->
     <div class="logo"></div>
 

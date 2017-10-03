@@ -10,9 +10,16 @@
  */
 
 namespace Mini\Controller;
+use Mini\Core\ParentController;
 
-class HomeController
+
+class HomeController extends ParentController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
      * PAGE: index
      * This method handles what happens when you move to http://yourproject/home/index (which is the default page btw)
