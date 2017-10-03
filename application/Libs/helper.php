@@ -46,12 +46,12 @@ class Helper
         return $output;
     }
 
-    function remove_slashes_at_start_and_end($string)
+    static public function remove_slashes_at_start_and_end($string)
     {
-        if ($this->startsWith($string, "/")) {
+        if (self::startsWith($string, "/")) {
             $string = substr($string, 1);
         }
-        if ($this->endsWith($string, "/")) {
+        if (self::endsWith($string, "/")) {
             $string = substr($string, 0, -1);
         }
         return $string;
