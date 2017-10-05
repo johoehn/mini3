@@ -21,6 +21,7 @@ class Application
     {
         // create array with URL parts in $url
         $this->splitUrl();
+        $this->formUrl();
 
         //redirect duplicate start page on /home/index
         if($this->url_controller == "home" && $this->url_action == "index") {
@@ -33,12 +34,12 @@ class Application
             $page = new \Mini\Controller\HomeController();
             $page->index();
 
-        } elseif (file_exists(APP . 'Controller/' . ucfirst($this->url_controller) . 'Controller.php')) {
+        } elseif (file_exists(APP . 'Controller/' . $this->url_controller . 'Controller.php')) {
             // here we did check for controller: does such a controller exist ?
 
             // if so, then load this file and create this controller
             // like \Mini\Controller\CarController
-            $controller = "\\Mini\\Controller\\" . ucfirst($this->url_controller) . 'Controller';
+            $controller = "\\Mini\\Controller\\" . $this->url_controller . 'Controller';
             $this->url_controller = new $controller();
 
             // check for method: does such a method exist in the controller ?
@@ -95,5 +96,21 @@ class Application
             //echo 'Action: ' . $this->url_action . '<br>';
             //echo 'Parameters: ' . print_r($this->url_params, true) . '<br>';
         }
+    }
+
+    private function formUrl() {
+        //check if url contains "_", then error because of duplicate content
+        if (
+            strpos($this->url_controller, '_') !== false ||
+            strpos($this->url_action, '_') !== false
+        ) {
+            echo "go to err";
+            //header('location: ' . URL . 'error');
+        }
+        //prepare name of controller
+        $this->url_controller = ucwords(str_replace("-", " ", $this->url_controller));
+        $this->url_controller = str_replace(" ", "", $this->url_controller);
+        //prepare name of action
+        $this->url_action = str_replace("-", "_", $this->url_action);
     }
 }
