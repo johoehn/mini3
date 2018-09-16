@@ -68,3 +68,10 @@ define('SMTP_USERNAME', 'john@doe.com');
 define('SMTP_PASSWORD', 'passphrase');
 define('SMTP_HOST', 'mail.doe.com');
 define('SMTP_PORT', 25);
+if (ENVIRONMENT == 'development') {
+    define('EMAIL_FROM', array('john@doe.com' => 'John Doe'));
+    define('EMAIL_KONTAKT_TO', array('john@doe.com' => 'John Doe'));
+} else {
+    define('EMAIL_FROM', array('john@doe.com' => 'John Doe'));
+    define('EMAIL_KONTAKT_TO', array('john@doe.com' => 'John Doe'));
+}

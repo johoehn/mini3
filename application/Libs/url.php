@@ -19,6 +19,17 @@ class Url
         return end($url);
     }
 
+    static public function is_front_page()
+    {
+      $url = Url::get_url_parts();
+      if(empty($url[0])) {
+          return true;
+      }
+      else {
+        return false;
+      }
+    }
+
     static public function get_url_parts()
     {
         $url = Helper::remove_slashes_at_start_and_end($_SERVER['REQUEST_URI']);

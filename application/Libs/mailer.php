@@ -23,7 +23,7 @@ class Mailer
             $templateFile = "default";
         }
         ob_start();
-        include(ROOT . "assets/templates/mail/" . $templateFile . ".php");
+        include(APP . "view/templates/mail/" . $templateFile . ".php");
         $replacementsFrom = array('{{message}}', '{{logo}}');
         $replacementsTo = array($msg, 'path/to/logo.png');
         $message->setBody(str_replace($replacementsFrom, $replacementsTo, ob_get_clean()), 'text/html');
@@ -31,6 +31,12 @@ class Mailer
 
 
         //set mail meta
+        if(property_exists($data, 'from')) {
+            $message->setFrom($data->from); //from coule be array or string, e.g. ['john@doe.com' => 'John Doe'] or 'john@doe.com
+        }
+        else {
+            $message->setFrom(EMAIL_FROM);
+        }
         if (property_exists($data, 'cc')) {
             $message->setCc($data->cc);
         }

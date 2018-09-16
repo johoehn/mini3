@@ -31,9 +31,9 @@ class SongsController
         $amount_of_songs = $Song->getAmountOfSongs();
 
        // load views. within the views we can echo out $songs and $amount_of_songs easily
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/songs/index.php';
-        require APP . 'view/_templates/footer.php';
+        require APP . 'view/components/header.php';
+        require APP . 'view/pages/songs/index.php';
+        require APP . 'view/components/footer.php';
     }
 
     /**

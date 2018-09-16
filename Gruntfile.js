@@ -70,11 +70,11 @@ module.exports = function (grunt) {
         },
         watch: {
             scripts: {
-                files: ['assets/js/*'],
+                files: ['assets/js/**/*'],
                 tasks: ['uglify']
             },
             scss: {
-                files: ['assets/scss/*'],
+                files: ['assets/scss/**/*'],
                 tasks: ['sass']
             }
         }
