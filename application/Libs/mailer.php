@@ -14,7 +14,6 @@ class Mailer
         $mailer = new \Swift_Mailer($transport);
         $message = (new \Swift_Message($subject));
         $message->setTo($to);
-        $message->setFrom($data->from); //from coule be array or string, e.g. ['john@doe.com' => 'John Doe'] or 'john@doe.com
 
         //set template
         if (!empty($data) && property_exists($data, 'template')) {
@@ -22,13 +21,15 @@ class Mailer
         } else {
             $templateFile = "default";
         }
+
         ob_start();
         include(APP . "view/templates/mail/" . $templateFile . ".php");
-        $replacementsFrom = array('{{message}}', '{{logo}}');
-        $replacementsTo = array($msg, 'path/to/logo.png');
-        $message->setBody(str_replace($replacementsFrom, $replacementsTo, ob_get_clean()), 'text/html');
-        $message->addPart($msg, 'text/plain');
+        $msg_template = ob_get_clean();
 
+        $replacementsFrom = array('{{ message }}', '{{ logo }}');
+        $replacementsTo = array($msg, Url::get_host().'/img/holzschmiede-logo.png');
+        $message->setBody(str_replace($replacementsFrom, $replacementsTo, $msg_template), 'text/html');
+        $message->addPart($msg, 'text/plain');
 
         //set mail meta
         if(property_exists($data, 'from')) {
@@ -48,9 +49,9 @@ class Mailer
         }
         if (property_exists($data, 'attach')) {
             //https://swiftmailer.symfony.com/docs/messages.html
-            $message->attach(\Swift_Attachment::fromPath('/path/to/image.jpg'));
+            $message->attach(\Swift_Attachment::fromPath($data->attach));
         }
-
-        return $mailer->send($message);
+        $mailer->send($message);
+        return true;
     }
 }

@@ -1,6 +1,9 @@
 <?php
 /** For more info about namespaces plase @see http://php.net/manual/en/language.namespaces.importing.php */
+
 namespace Mini\Core;
+
+use Mini\Libs\Viewhelper;
 
 class Application
 {
@@ -19,12 +22,20 @@ class Application
      */
     public function __construct()
     {
+        //fix
+        if(ENVIRONMENT == 'development') {
+            $self_url = str_replace("/index.php", "", $_SERVER['PHP_SELF']);
+            if(!isset($_GET['url']) && $self_url) {
+                $_GET['url'] = $self_url;
+            }
+        }
+
         // create array with URL parts in $url
         $this->splitUrl();
         $this->formUrl();
 
         //redirect duplicate start page on /home/index
-        if($this->url_controller == "home" && $this->url_action == "index") {
+        if ($this->url_controller == "home" && $this->url_action == "index") {
             header("Location: /");
         }
 
@@ -45,7 +56,7 @@ class Application
             // check for method: does such a method exist in the controller ?
             if (method_exists($this->url_controller, $this->url_action) &&
                 is_callable(array($this->url_controller, $this->url_action))) {
-                
+
                 if (!empty($this->url_params)) {
                     // Call the method and pass arguments to it
                     call_user_func_array(array($this->url_controller, $this->url_action), $this->url_params);
@@ -59,11 +70,11 @@ class Application
                     // no action defined: call the default index() method of a selected controller
                     $this->url_controller->index();
                 } else {
-                    header('location: ' . URL . 'error');
+                    $this->url_controller->{$this->url_action}();
                 }
             }
         } else {
-            header('location: ' . URL . 'error');
+            Viewhelper::render_error_page();
         }
     }
 
@@ -98,14 +109,14 @@ class Application
         }
     }
 
-    private function formUrl() {
+    private function formUrl()
+    {
         //check if url contains "_", then error because of duplicate content
         if (
             strpos($this->url_controller, '_') !== false ||
             strpos($this->url_action, '_') !== false
         ) {
-            echo "go to err";
-            //header('location: ' . URL . 'error');
+            Viewhelper::render_error_page();
         }
         //prepare name of controller
         $this->url_controller = ucwords(str_replace("-", " ", $this->url_controller));

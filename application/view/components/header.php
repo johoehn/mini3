@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>MINI3</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <?php
+    echo \Mini\Libs\Viewhelper::render_title_tag();
+    ?>
+
+
 
     <!-- JS -->
     <!-- please note: The JavaScript files are loaded in the footer to speed up page construction -->
