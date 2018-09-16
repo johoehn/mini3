@@ -6,7 +6,6 @@ var files = {
         '.idea',
         '.git',
         'node_modules',
-        '.ftppass',
         'Gruntfile.js',
         'composer.json',
         'composer.lock',
@@ -47,46 +46,11 @@ module.exports = function (grunt) {
                     ]
                 }
             }
-        },
-        'ftp-deploy': {
-            public: {
-                auth: auth,
-                src: 'public',
-                dest: 'public',
-                exclusions: [files.exclusions]
-            },
-            application: {
-                auth: auth,
-                src: 'application',
-                dest: 'application',
-                exclusions: [files.exclusions]
-            },
-            vendor: {
-                auth: auth,
-                src: 'vendor',
-                dest: 'vendor',
-                exclusions: [files.exclusions]
-            }
-        },
-        watch: {
-            scripts: {
-                files: ['assets/js/**/*'],
-                tasks: ['uglify']
-            },
-            scss: {
-                files: ['assets/scss/**/*'],
-                tasks: ['sass']
-            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-ftp-deploy');
-
     grunt.registerTask('default', ['sass', 'uglify', 'watch']);
-    grunt.registerTask('publish', ['ftp-deploy:public', 'ftp-deploy:application']);
-    grunt.registerTask('publish-vendor', ['ftp-deploy:vendor']);
-
 };
