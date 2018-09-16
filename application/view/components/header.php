@@ -19,52 +19,51 @@
 </head>
 <body class="<?php echo $this->data->body_class; ?>">
 
+<style>html{margin-top:0 !important;}</style>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<main class="main bg-dark">
+    <iframe class="iframe-preview" width="100%" src="https://keenthemes.com/keen/"></iframe>
+</main>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
+<nav class="navbar navbar-preview fixed-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center w-100"><a class="my-lg-0 text-gray-soft" href="https://themes.getbootstrap.com/product/keen-the-ultimate-bootstrap-admin-theme/"><i class="bootstrap-themes-icon-left-open-1"></i> View theme <span class="d-none d-sm-inline">info</span></a>
+        <ul class="nav nav-preview d-none d-md-flex" role="tablist">
+            <li class="nav-item"><a class="nav-link btn-iframe-to-desktop-trigger active" data-toggle="tab" href="#home" role="tab"><i class="bootstrap-themes-icon-desktop nav-preview__icon"></i></a></li>
+            <li class="nav-item"><a class="nav-link nav-link--small btn-iframe-to-mobile-trigger" data-toggle="tab" href="#profile" role="tab"><i class="bootstrap-themes-icon-iphone nav-preview__icon nav-preview__icon--sm"></i></a></li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <div class="form-inline">
+            <div class="btn-group d-none d-sm-flex">
+                <a class="dropdown-toggle text-gray-soft" js-price-dropdown="true" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Standard License</a>
+                <div class="dropdown-menu dropdown-menu--xl dropdown-menu--centered dropdown-menu--has-triangle">
+                    <button class="dropdown-block-item switch_price_prod" data-type="Standard License" data-price="49.00" data-price_label="$49.00" data-label="Standard License">
+                        <div class="d-flex justify-content-between align-items-center mb-2"><span>Standard License</span><span class="d-flex align-items-center">$49.00</span></div>
+                        <ul class="fs-13 text-gray-soft mb-2">
+                            <li>Use for a single product</li>
+                            <li>Non-paying users only</li>
+                        </ul>
+                        <p class="fs-11 text-gray-soft">Read the full <a href="https://themes.getbootstrap.com/licenses#fullStandardLicense">Standard License</a></p>
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-block-item switch_price_prod" data-type="Extended License" data-price="949.00" data-price_label="$949.00" data-label="Extended License">
+                        <div class="d-flex justify-content-between align-items-center mb-2"><span>Extended License</span><span class="d-flex align-items-center">$949.00</span></div>
+                        <ul class="fs-13 text-gray-soft mb-2">
+                            <li>Use for a single product</li>
+                            <li>Paying users allowed</li>
+                        </ul>
+                        <p class="fs-11 text-gray-soft">Read the full <a href="https://themes.getbootstrap.com/licenses#fullExtendedLicense">Extended License</a></p>
+                    </button>
+                </div>
+            </div>
+            <form action="https://themes.getbootstrap.com/cart/" method="POST" class=" btn-block inline-block">
+                <input type="hidden" js-license-type="license_type" name="license_type" value="Standard License" />
+                <input type="hidden" name="add-to-cart" value="9026" />
+                <button type="submit" class="btn btn-brand btn-block btn-checkout"><span class="btn-text">Add to cart <span class="btn__label btn__label--right" js-price-value="main_price_div">$<b id="price_val">49.00</b></span></span></button>
+            </form>
+            <a class="text-gray ml-3" href="https://keenthemes.com/keen/">
+                <small>
+                    <i class="bootstrap-themes-icon-close"></i>
+                </small>
+            </a>
+        </div>
     </div>
 </nav>
-
-
-
-    <!-- logo, check the CSS file for more info how the logo "image" is shown -->
-    <div class="logo"></div>
-
-    <!-- navigation -->
-    <div class="navigation">
-        <a href="<?php echo URL; ?>">home</a>
-        <a href="<?php echo URL; ?>home/exampleone">home/exampleone</a>
-        <a href="<?php echo URL; ?>home/exampletwo">home/exampletwo</a>
-        <a href="<?php echo URL; ?>songs">songs</a>
-    </div>
